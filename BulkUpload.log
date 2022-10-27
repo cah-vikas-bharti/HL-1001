@@ -12,7 +12,7 @@ insert into outcomes.dbo.userCenter(userID, centerID, requestDT, approved, appro
 select userID from auth.dbo.users where username like 'SIGNIFYHEALTHUSER%';
 
 -- 2. complete training
-update auth.dbo.users set completedTraining=1 where username like 'SIGNIFYHEALTHUSER%' WITH (NOLOCK);
+update auth.dbo.users WITH (NOLOCK) set completedTraining=1 where username like 'SIGNIFYHEALTHUSER%';
 
 -- 3. Get CenterID
 select centerID from outcomes.dbo.pharmacy where NCPDP_NABP='99B344'; 
