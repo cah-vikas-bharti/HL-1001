@@ -4,3 +4,19 @@ select * from outcomes.dbo.pharmacy where NCPDP_NABP='9999990';
 
 --10203
 insert into outcomes.dbo.userCenter(userID, centerID, requestDT, approved, approvedDT, active, selected) values(149474, 10203,'2022-10-25', 1, '2022-10-25', 1, 1); 
+
+
+
+
+-- 1. Get UserIds
+select userID from auth.dbo.users where usename like 'SIGNIFYHEALTHUSER%'
+
+-- 2. complete training
+update auth.dbo.users set completedTraining=1 where usename like 'SIGNIFYHEALTHUSER%'
+
+-- 3. Get CenterID
+select centerID from outcomes.dbo.pharmacy where NCPDP_NABP='99B344'; 
+
+-- 4. bulk update user center by query
+
+
