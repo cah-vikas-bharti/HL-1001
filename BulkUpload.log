@@ -1,0 +1,6 @@
+select * from outcomes.dbo.role where userID=149474;
+
+select * from outcomes.dbo.pharmacy where NCPDP_NABP='9999990'; 
+
+--10203
+insert into outcomes.dbo.userCenter(userID, centerID, requestDT, approved, approvedDT, active, selected) values(149474, 10203,'2022-10-25', 1, '2022-10-25', 1, 1); 
