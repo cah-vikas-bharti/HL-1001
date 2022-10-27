@@ -20,3 +20,12 @@ select centerID from outcomes.dbo.pharmacy where NCPDP_NABP='99B344';
 -- 4. bulk update user center by query
 
 
+
+
+------------------------------------------- 5 User Rec -----------------------------------------
+
+insert into outcomes.dbo.userCenter (userID,centerID,requestDT,approved,approvedDT,active,selected) values (493279,192719,'2022-10-25', 1,'2022-10-25',1,1);
+insert into outcomes.dbo.userCenter (userID,centerID,requestDT,approved,approvedDT,active,selected) values (493280,192719,'2022-10-25', 1,'2022-10-25',1,1);
+insert into outcomes.dbo.userCenter (userID,centerID,requestDT,approved,approvedDT,active,selected) values (493281,192719,'2022-10-25', 1,'2022-10-25',1,1);
+insert into outcomes.dbo.userCenter (userID,centerID,requestDT,approved,approvedDT,active,selected) values (493282,192719,'2022-10-25', 1,'2022-10-25',1,1);
+insert into outcomes.dbo.userCenter (userID,centerID,requestDT,approved,approvedDT,active,selected) values (493283,192719,'2022-10-25', 1,'2022-10-25',1,1);
