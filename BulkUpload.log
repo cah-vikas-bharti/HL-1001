@@ -1,11 +1,11 @@
 -- 1. Get UserIds
-select userID from auth.dbo.users where username like 'SIGNIFYHEALTHUSER%';
+select userID from auth.dbo.users WITH (NOLOCK) where username like 'SIGNIFYHEALTHUSER%';
 
 -- 2. complete training
-update auth.dbo.users WITH (NOLOCK) set completedTraining=1 where username like 'SIGNIFYHEALTHUSER%';
+update auth.dbo.users WITH (ROWLOCK) set completedTraining=1 where username like 'SIGNIFYHEALTHUSER%';
 
 -- 3. Get CenterID
-select centerID from outcomes.dbo.pharmacy where NCPDP_NABP='99B344'; 
+select centerID from outcomes.dbo.pharmacy WITH (NOLOCK) where NCPDP_NABP='99B344'; 
 
 -- 4. bulk update user center by query
 
@@ -14,8 +14,8 @@ select centerID from outcomes.dbo.pharmacy where NCPDP_NABP='99B344';
 
 ------------------------------------------- 5 User Rec -----------------------------------------
 
-insert into outcomes.dbo.userCenter (userID,centerID,requestDT,approved,approvedDT,active,selected) values (493279,192719,'2022-10-25', 1,'2022-10-25',1,1);
-insert into outcomes.dbo.userCenter (userID,centerID,requestDT,approved,approvedDT,active,selected) values (493280,192719,'2022-10-25', 1,'2022-10-25',1,1);
-insert into outcomes.dbo.userCenter (userID,centerID,requestDT,approved,approvedDT,active,selected) values (493281,192719,'2022-10-25', 1,'2022-10-25',1,1);
-insert into outcomes.dbo.userCenter (userID,centerID,requestDT,approved,approvedDT,active,selected) values (493282,192719,'2022-10-25', 1,'2022-10-25',1,1);
-insert into outcomes.dbo.userCenter (userID,centerID,requestDT,approved,approvedDT,active,selected) values (493283,192719,'2022-10-25', 1,'2022-10-25',1,1);
+insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (493279,192719,'2022-10-25', 1,'2022-10-25',1,1);
+insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (493280,192719,'2022-10-25', 1,'2022-10-25',1,1);
+insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (493281,192719,'2022-10-25', 1,'2022-10-25',1,1);
+insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (493282,192719,'2022-10-25', 1,'2022-10-25',1,1);
+insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (493283,192719,'2022-10-25', 1,'2022-10-25',1,1);
