@@ -2,7 +2,7 @@ select top 100 * from auth.dbo.users;
 --salt
 --password
 
-select * from auth.dbo.users where username like 'SIGNIFYHEALTH%';
+select * from auth.dbo.users where username like 'SIGNIFYHEALTH%'; --149474
 
 --27DCC344EBBBD3F43788043C09F70FF37F34240B81B23DDB2709D6E9D57FA89568B36F9916DBF3D38C7097A3A7722953A4B7D9280435757459D94CAD1BE1DFFC--
 --F16254847B723268F84FC54981C168687DD435BB5AFD758248E538AB20744CEA48F3FCEABE773DA704E52DAA5DBEB8791DC8CEF59D2B6DFB25BFA7375BC680ED
@@ -55,3 +55,14 @@ select * from auth.dbo.users where username like 'testbulksig0001%';
 
 insert into outcomes.dbo.role (userID,roleTypeID,createDT,createBy,active,Selected,approved,rejected) values (149491,1,'2022-10-31','testbulksig0001',1,1,1,0);
 
+select * from outcomes.dbo.userCenter where userID = 149474;
+-- 257888	149474	10203	2022-10-25	1	2022-10-25	NULL	1	0	NULL	1
+
+
+insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (149491,10203,'2022-10-25', 1,'2022-10-25',1,1);
+
+update auth.dbo.users WITH (ROWLOCK) set completedTraining=1 where username like 'testbulksig0001%';
+
+select * from outcomes.dbo.contact where userID = '149474';
+
+insert into outcomes.dbo.contact (userID,email,phone,firstNM,lastNM,dob,createDT,createBy) values (149491,'tst@bulktst1.com',001234239843,'BulkTestUser','Testing','1999-05-10','2022-10-27','');
