@@ -19,3 +19,9 @@ insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,ap
 insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (493281,192719,'2022-10-25', 1,'2022-10-25',1,1);
 insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (493282,192719,'2022-10-25', 1,'2022-10-25',1,1);
 insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (493283,192719,'2022-10-25', 1,'2022-10-25',1,1);
+
+
+
+
+----------------------- sample
+select userID from auth.dbo.users where createDT  = '2022-11-02' and username like 'bulktestsignify000002';
