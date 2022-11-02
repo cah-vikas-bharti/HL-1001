@@ -2,7 +2,7 @@
 select userID from auth.dbo.users WITH (NOLOCK) where createDT='2022-11-02' and username like 'SIGNIFYHEALTHUSER%';
 
 -- 2. complete training
-update auth.dbo.users WITH (ROWLOCK) set completedTraining=1,lastActivityDT='2025-12-31',lastLoginDT='2025-12-31' where username like 'SIGNIFYHEALTHUSER%';
+update auth.dbo.users WITH (ROWLOCK) set completedTraining=1,lastActivityDT='2022-11-02',lastLoginDT='2022-11-02' where username like 'SIGNIFYHEALTHUSER%';
 
 -- 3. Get CenterID
 select centerID from outcomes.dbo.pharmacy WITH (NOLOCK) where NCPDP_NABP='99B344'; 
