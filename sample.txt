@@ -543,3 +543,12 @@ SELECT
 550,report.getUploadResult,event=bulkDataUpload.auditTool,1,1
 551,report.sortUploadRows,event=bulkDataUpload.auditTool,1,1
 552,user.activateUser,event=userManager,1,1
+
+
+
+==========
+insert into outcomes.dbo.Connect_WS_Authorization (WebServiceMethod
+    ,WebServiceAuthorizedCallingPage
+    ,RequiresAuthentication
+    ,Active) values (“pharmacy.getuser”,“*”,1,1)
+
