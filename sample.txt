@@ -1,0 +1,7 @@
+SELECT
+                    WebServiceAuthorizationID
+                    ,WebServiceMethod
+                    ,WebServiceAuthorizedCallingPage
+                    ,RequiresAuthentication
+                    ,Active
+            FROM outcomes.dbo.Connect_WS_Authorization with(nolock)
