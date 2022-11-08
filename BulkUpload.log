@@ -1,16 +1,13 @@
 -- 1. Get UserIds
 select userID from auth.dbo.users WITH (NOLOCK) where createDT='2022-11-08' and username like 'SIGNIFYHEALTHUSER%';
 
--- 2. Get userid of specific id 
-select userID from auth.dbo.users with (NOLOCK) where username in (SIGNIFYHEALTHUSER000237,SIGNIFYHEALTHUSER000238,SIGNIFYHEALTHUSER000240,SIGNIFYHEALTHUSER000241,SIGNIFYHEALTHUSER000244,SIGNIFYHEALTHUSER000245,SIGNIFYHEALTHUSER000247,SIGNIFYHEALTHUSER000248,SIGNIFYHEALTHUSER000251,SIGNIFYHEALTHUSER000253,SIGNIFYHEALTHUSER000256,SIGNIFYHEALTHUSER000257,SIGNIFYHEALTHUSER000259,SIGNIFYHEALTHUSER000260,SIGNIFYHEALTHUSER000261);
-
--- 3. complete training
+-- 2. complete training
 update auth.dbo.users WITH (ROWLOCK) set completedTraining=1, lastActivityDT='2022-11-08', lastLoginDT='2022-11-08' where username like 'SIGNIFYHEALTHUSER%';
 
--- 4. Get CenterID
+-- 3. Get CenterID
 select centerID from outcomes.dbo.pharmacy WITH (NOLOCK) where NCPDP_NABP='99B344'; 
 
--- 5. bulk update user center by query
+-- 4. bulk update user center by query
 
 
 
@@ -19,6 +16,3 @@ select centerID from outcomes.dbo.pharmacy WITH (NOLOCK) where NCPDP_NABP='99B34
 insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (493371,192719,'2022-11-02', 1,2022-11-02',1,1);
 insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (493372,192719,'2022-11-02', 1,2022-11-02',1,1);
 insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (493373,192719,'2022-11-02', 1,2022-11-02',1,1);
-
-
---6. update roles
