@@ -22,8 +22,3 @@ insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,ap
 
 
 --6. update roles
-
-
-
------------------------ sample
-select userID from auth.dbo.users where createDT  = '2022-11-02' and username like 'bulktestsignify000002';
