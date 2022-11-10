@@ -1,0 +1,17 @@
+select top 100 * from auth.dbo.users;
+
+select * from outcomes.dbo.contact;
+
+select * from outcomes.dbo.userLicense;
+
+select * from outcomes.dbo.licenseType;
+
+select * from outcomes.dbo.pharmacy; --NCPDP_NABP
+
+--10203
+
+SELECT  * FROM outcomes.dbo.role; -- multiple entries
+
+select * from outcomes.dbo.roleType;
+
+select  * from outcomes.dbo.userCenter; -- one entry 
