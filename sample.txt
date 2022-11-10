@@ -6,6 +6,60 @@ SELECT
                     ,Active
             FROM outcomes.dbo.Connect_WS_Authorization with(nolock)
 
+with users as (
+				select uc.userID
+				from outcomes.dbo.userCenter uc WITH (NOLOCK)
+				JOIN auth.dbo.users u WITH (NOLOCK) ON uc.userID = u.userID
+                join outcomes.dbo.contact c WITH (NOLOCK) on u.userID = c.userID
+				LEFT JOIN
+					(SELECT case
+						when ppa.policyActionID = 5 then 1
+						else 0
+					end as NeedsAT, pt1.PolicyID
+					FROM outcomes.dbo.patient pt1 WITH (NOLOCK)
+					JOIN outcomes.dbo.policyPolicyAction ppa WITH (NOLOCK) ON ppa.policyid = pt1.policyid
+					AND cast(getdate() as date) >= ppa.activeAsOf
+					AND cast(getdate() as date) < isnull(ppa.activeThru,'99991231')
+					WHERE 1 = 1
+					AND ppa.policyActionID = 5
+					) att on 1=1
+				LEFT JOIN outcomes.dbo.userAttested ua WITH (NOLOCK) on uc.userID = ua.userID AND ua.policyID = att.PolicyID
+				where 1 = 1
+				and uc.approved = 1
+				and uc.active = 1
+				and u.active = 1
+				AND isnull(ua.hasAttested,0) >= isnull(att.NeedsAT,0)
+                and (c.firstNM like '#trim(arguments.query)#%' or c.lastNM like '#trim(arguments.query)#%')
+                group by uc.userID
+            )
+
+			select 	r.roleID,
+					rt.roleTypeNM,
+					rt.roleTypeDesc,
+					c.firstNM AS providerFirstName,
+					c.lastNM  AS providerLastName,
+					t.numRoles
+			from users u WITH (NOLOCK)
+			join outcomes.dbo.contact c WITH (NOLOCK) on u.userID = c.userID
+			join outcomes.dbo.role r WITH (NOLOCK) on u.userID = r.userID
+			join outcomes.dbo.roleType rt WITH (NOLOCK) on rt.roleTypeID = r.roleTypeID
+			join (
+				select r.userID, count(distinct(rt.roleTypeID)) as numRoles
+				from outcomes.dbo.role r WITH (NOLOCK)
+				join outcomes.dbo.roleType rt  WITH (NOLOCK)on rt.roleTypeID = r.roleTypeID
+				where 1 = 1
+				and r.active = 1
+				and r.approved = 1
+				and rt.active = 1
+				and rt.roleTypeTypeID = 2
+				group by r.userID
+			) t on u.userID = t.userID
+			where 1 = 1
+			and r.active = 1
+			and r.approved = 1
+			and rt.active = 1
+			and rt.roleTypeTypeID = 2
+			ORDER BY providerFirstName, providerLastName
 
 
 
