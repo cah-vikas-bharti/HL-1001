@@ -71,6 +71,7 @@ SELECT r.rarID
 		,rt.reasonTypeID
 		,at.actionTypeID
 		,at.actionNM
+		,ld.RARLegacyDefaultID
 		, case when ld.RARLegacyDefaultID IS NULL then 'NO OK' else 'OK' end as result
 FROM outcomes.dbo.RAR r with(nolock)
 JOIN outcomes.dbo.reasonType rt with(nolock) ON r.reasonTypeID = rt.reasonTypeID
@@ -79,7 +80,8 @@ JOIN outcomes.dbo.resultType rst with(nolock) ON r.resultTypeID = rst.resultType
 JOIN outcomes.dbo.serviceType p with(nolock) ON 1 = 1
 left join outcomes.dbo.RARLegacyDefault ld on ld.RARID=r.RARID
 where 
-rt.reasonTypeDesc='Adherence - Needs check-in' and at.actionNM='Patient consultation' and rst.resultDesc='Adherence check-in completed'
+-- rt.reasonTypeDesc='Adherence - Needs check-in' and at.actionNM='Patient consultation' and rst.resultDesc='Adherence check-in completed'
+rt.reasonTypeDesc='Suboptimal drug' and at.actionNM='Prescriber consultation' and rst.resultDesc='Prescriber refused recommendation'
 and p.serviceTypeID=1;
 	    
 
