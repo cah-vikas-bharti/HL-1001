@@ -63,24 +63,24 @@ with users as (
 
 
 SELECT r.rarID
-				 , p.serviceType
-				 , p.serviceTypeID
-				 , rt.reasonTypeDesc
-				 , at.actionNM
-				 , rst.resultDesc
-				 , coalesce(qs.serviceFee, r.serviceFee) as serviceFee
-				 , coalesce(qs.transactionFee, r.transactionFee) as transactionFee
-				 , coalesce(qs.invoiceAmount, r.invoiceAmount) as invoiceAmount
-				 , CASE WHEN isnull(TOR.RARRestrictionID, 0) > 0 THEN 1 ELSE 0 END as hasTipOnlyRestriction
-				 , CASE WHEN isnull(CFR.RARRestrictionID, 0) > 0 THEN 1 ELSE 0 END as hasCMRFirstRestriction
-				 , CASE WHEN isnull(MRFR.RARRestrictionID, 0) > 0 THEN 1 ELSE 0 END as hasMedRecFirstRestriction
-				 , CASE WHEN isnull(qs.serviceTypeID, 0) = p.serviceTypeID THEN 1 ELSE 0 END AS hasServiceType
-			FROM outcomes.dbo.RAR r with(nolock)
-			JOIN outcomes.dbo.reasonType rt with(nolock) ON r.reasonTypeID = rt.reasonTypeID
-			JOIN outcomes.dbo.actionType at with(nolock) ON r.actionTypeID = at.actionTypeID
-			JOIN outcomes.dbo.resultType rst with(nolock) ON r.resultTypeID = rst.resultTypeID
-			JOIN outcomes.dbo.serviceType p with(nolock) ON 1 = 1
-            where rt.reasonTypeDesc=""
+		, p.serviceType
+		, p.serviceTypeID
+		, rt.reasonTypeDesc
+		, at.actionNM
+		, rst.resultDesc
+		,rt.reasonTypeID
+		,at.actionTypeID
+		,at.actionNM
+		, case when ld.RARLegacyDefaultID IS NULL then 'NO OK' else 'OK' end as result
+FROM outcomes.dbo.RAR r with(nolock)
+JOIN outcomes.dbo.reasonType rt with(nolock) ON r.reasonTypeID = rt.reasonTypeID
+JOIN outcomes.dbo.actionType at with(nolock) ON r.actionTypeID = at.actionTypeID
+JOIN outcomes.dbo.resultType rst with(nolock) ON r.resultTypeID = rst.resultTypeID
+JOIN outcomes.dbo.serviceType p with(nolock) ON 1 = 1
+left join outcomes.dbo.RARLegacyDefault ld on ld.RARID=r.RARID
+where 
+rt.reasonTypeDesc='Adherence - Needs check-in' and at.actionNM='Patient consultation' and rst.resultDesc='Adherence check-in completed'
+and p.serviceTypeID=1;
 	    
 
 Adherence - Needs check-in	Patient consultation	Adherence check-in completed	Y	N	N	 $10.00 	 $-   
