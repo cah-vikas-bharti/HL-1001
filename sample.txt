@@ -82,7 +82,8 @@ SELECT r.rarID
 			JOIN outcomes.dbo.serviceType p with(nolock) ON 1 = 1
             where rt.reasonTypeDesc=""
 	    
-	    
+
+Adherence - Needs check-in	Patient consultation	Adherence check-in completed	Y	N	N	 $10.00 	 $-   
 
 ==========
 insert into outcomes.dbo.Connect_WS_Authorization (WebServiceMethod
