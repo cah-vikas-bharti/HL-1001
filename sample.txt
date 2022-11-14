@@ -86,7 +86,6 @@ from outcomes.dbo.RAR r with(nolock)
 JOIN outcomes.dbo.reasonType rt with(nolock) ON r.reasonTypeID = rt.reasonTypeID 
 JOIN outcomes.dbo.actionType at with(nolock) ON r.actionTypeID = at.actionTypeID 
 JOIN outcomes.dbo.resultType rst with(nolock) ON r.resultTypeID = rst.resultTypeID 
-JOIN outcomes.dbo.serviceType p with(nolock) ON 1 = 1
 where rt.reasonTypeDesc = 'Suboptimal drug' and at.actionNM = 'Prescriber consultation' and rst.resultDesc = 'Unable to reach prescriber after 3 attempts'
 )
 BEGIN
@@ -95,15 +94,14 @@ BEGIN
 	JOIN outcomes.dbo.reasonType rt with(nolock) ON r.reasonTypeID = rt.reasonTypeID 
 	JOIN outcomes.dbo.actionType at with(nolock) ON r.actionTypeID = at.actionTypeID 
 	JOIN outcomes.dbo.resultType rst with(nolock) ON r.resultTypeID = rst.resultTypeID 
-	JOIN outcomes.dbo.serviceType p with(nolock) ON 1 = 1
-	where rt.reasonTypeDesc = 'Suboptimal drug' and at.actionNM = 'Prescriber consultation' and rst.resultDesc = 'Unable to reach prescriber after 3 attempts' and r.serviceFee=2)
+	where rt.reasonTypeDesc = 'Suboptimal drug' and at.actionNM = 'Prescriber consultation' and rst.resultDesc = 'Unable to reach prescriber after 3 attempts' and r.serviceFee=5)
 	BEGIN
 		IF EXISTS (select *
 		from outcomes.dbo.RAR r with(nolock) 
 		JOIN outcomes.dbo.reasonType rt with(nolock) ON r.reasonTypeID = rt.reasonTypeID 
 		JOIN outcomes.dbo.actionType at with(nolock) ON r.actionTypeID = at.actionTypeID 
 		JOIN outcomes.dbo.resultType rst with(nolock) ON r.resultTypeID = rst.resultTypeID 
-		JOIN outcomes.dbo.RARLegacyDefault rld with(nolock) ON rld.RARID=r.RARID
+		JOIN outcomes.dbo.RARLegacyDefault rld with (nolock) ON rld.RARID=r.RARID
 		where rt.reasonTypeDesc = 'Suboptimal drug' and at.actionNM = 'Prescriber consultation' and rst.resultDesc = 'Unable to reach prescriber after 3 attempts'
 		)
 		BEGIN
@@ -111,7 +109,7 @@ BEGIN
 		END
 		ELSE
 		BEGIN
-			insert into outcomes.dbo.RARLegacyDefault (RARID,tipOnly,F2FOnly,MedRecOnly) select RARID,0,0,0 from outcomes.dbo.RAR r 
+			insert into outcomes.dbo.RARLegacyDefault with (ROWLOCK) (RARID,tipOnly,F2FOnly,MedRecOnly) select RARID,0,0,0 from outcomes.dbo.RAR r 
 			JOIN outcomes.dbo.reasonType rt with(nolock) ON r.reasonTypeID = rt.reasonTypeID 
 			JOIN outcomes.dbo.actionType at with(nolock) ON r.actionTypeID = at.actionTypeID 
 			JOIN outcomes.dbo.resultType rst with(nolock) ON r.resultTypeID = rst.resultTypeID  where 
@@ -123,7 +121,7 @@ BEGIN
 	ELSE
 	BEGIN
 		select cast('UPDATE FEE' as text) as results;
-		update outcomes.dbo.RAR set outcomes.dbo.RAR.serviceFee=5
+		update outcomes.dbo.RAR with (ROWLOCK) set outcomes.dbo.RAR.serviceFee=5
 		from outcomes.dbo.RAR r JOIN outcomes.dbo.reasonType rt with(nolock) ON r.reasonTypeID = rt.reasonTypeID 
 			JOIN outcomes.dbo.actionType at with(nolock) ON r.actionTypeID = at.actionTypeID 
 			JOIN outcomes.dbo.resultType rst with(nolock) ON r.resultTypeID = rst.resultTypeID where 
@@ -153,6 +151,6 @@ BEGIN
 END
 ELSE
 BEGIN
-   select * from outcomes.dbo.adherenceBarrier
+   select cast('NO RAR' as text) as results;
 END
 GO
