@@ -69,6 +69,8 @@ FROM outcomes.dbo.RAR r with(nolock) JOIN outcomes.dbo.reasonType rt with(nolock
 
 Adherence - Needs check-in	Patient consultation	Adherence check-in completed	Y	N	N	 $10.00 	 $-   
 
+Adverse drug reaction 	Prescriber consultation 	Discontinued therapy
+
 ==========
 insert into outcomes.dbo.Connect_WS_Authorization (WebServiceMethod
     ,WebServiceAuthorizedCallingPage
