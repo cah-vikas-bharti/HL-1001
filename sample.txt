@@ -78,16 +78,57 @@ insert into outcomes.dbo.Connect_WS_Authorization (WebServiceMethod
     ,Active) values (“pharmacy.getuser”,“*”,1,1)
 
 
-IF EXISTS (
-	SELECT case when (ld.RARLegacyDefaultID IS NULL or r.serviceFee!=10) then 'NO OK' else 'OK' end as result,r.rarID,p.serviceType,p.serviceTypeID,rt.reasonTypeDesc,at.actionNM,rst.resultDesc,rt.reasonTypeID,at.actionTypeID,at.actionNM,ld.RARLegacyDefaultID FROM outcomes.dbo.RAR r with(nolock) JOIN outcomes.dbo.reasonType rt with(nolock) ON r.reasonTypeID = rt.reasonTypeID JOIN outcomes.dbo.actionType at with(nolock) ON r.actionTypeID = at.actionTypeID JOIN outcomes.dbo.resultType rst with(nolock) ON r.resultTypeID = rst.resultTypeID JOIN outcomes.dbo.serviceType p with(nolock) ON 1 = 1 join outcomes.dbo.RARLegacyDefault ld on ld.RARID = r.RARID where p.serviceTypeID=1 and rt.reasonTypeDesc='Needs Patient Education' and at.actionNM='Patient Education' and rst.resultDesc='Patient education provided';
+
+
+=================================================================
+
+
+IF EXISTS (select *
+from outcomes.dbo.RAR r with(nolock) 
+JOIN outcomes.dbo.reasonType rt with(nolock) ON r.reasonTypeID = rt.reasonTypeID 
+JOIN outcomes.dbo.actionType at with(nolock) ON r.actionTypeID = at.actionTypeID 
+JOIN outcomes.dbo.resultType rst with(nolock) ON r.resultTypeID = rst.resultTypeID 
+JOIN outcomes.dbo.serviceType p with(nolock) ON 1 = 1
+where rt.reasonTypeDesc = 'Suboptimal drug' and at.actionNM = 'Prescriber consultation' and rst.resultDesc = 'Unable to reach prescriber after 3 attempts'
 )
 BEGIN
-    -- Write your update statement here.
-	select "Update";
+    IF EXISTS (select *
+	from outcomes.dbo.RAR r with(nolock) 
+	JOIN outcomes.dbo.reasonType rt with(nolock) ON r.reasonTypeID = rt.reasonTypeID 
+	JOIN outcomes.dbo.actionType at with(nolock) ON r.actionTypeID = at.actionTypeID 
+	JOIN outcomes.dbo.resultType rst with(nolock) ON r.resultTypeID = rst.resultTypeID 
+	JOIN outcomes.dbo.serviceType p with(nolock) ON 1 = 1
+	where rt.reasonTypeDesc = 'Suboptimal drug' and at.actionNM = 'Prescriber consultation' and rst.resultDesc = 'Unable to reach prescriber after 3 attempts' and r.serviceFee=2)
+	BEGIN
+		IF EXISTS (select *
+		from outcomes.dbo.RAR r with(nolock) 
+		JOIN outcomes.dbo.reasonType rt with(nolock) ON r.reasonTypeID = rt.reasonTypeID 
+		JOIN outcomes.dbo.actionType at with(nolock) ON r.actionTypeID = at.actionTypeID 
+		JOIN outcomes.dbo.resultType rst with(nolock) ON r.resultTypeID = rst.resultTypeID 
+		JOIN outcomes.dbo.RARLegacyDefault rld with(nolock) ON rld.RARID=r.RARID
+		where rt.reasonTypeDesc = 'Suboptimal drug' and at.actionNM = 'Prescriber consultation' and rst.resultDesc = 'Unable to reach prescriber after 3 attempts'
+		)
+		BEGIN
+			select cast('NO CHANGE' as text) as results;
+		END
+		ELSE
+		BEGIN
+			insert into outcomes.dbo.RARLegacyDefault (RARID,tipOnly,F2FOnly,MedRecOnly) select RARID,0,0,0 from outcomes.dbo.RAR r JOIN outcomes.dbo.reasonType rt with(nolock) ON r.reasonTypeID = rt.reasonTypeID 
+			JOIN outcomes.dbo.actionType at with(nolock) ON r.actionTypeID = at.actionTypeID 
+			JOIN outcomes.dbo.resultType rst with(nolock) ON r.resultTypeID = rst.resultTypeID  where 
+			rt.reasonTypeDesc = 'Suboptimal drug' and at.actionNM = 'Prescriber consultation' and rst.resultDesc = 'Unable to reach prescriber after 3 attempts'
+			select cast('NEW RAR' as text) as results;
+			
+		END
+
+	END
+	ELSE
+	BEGIN
+		select * from outcomes.dbo.address
+	END
 END
 ELSE
 BEGIN
-   -- Write your insert statement here.
-   select "Insert"
+   select * from outcomes.dbo.adherenceBarrier
 END
 GO
