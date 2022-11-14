@@ -10,7 +10,7 @@ select centerID from outcomes.dbo.pharmacy WITH (NOLOCK) where NCPDP_NABP='99B34
 -- 4. Update Emailid of existing users
 update outcomes.dbo.contact with (rowlock) set email='GMB-SignifyHealthUsers@getoutcomes.com' where userID in (select userID from auth.dbo.users with(nolock) where username like 'SIGNIFYHEALTHUSER%');
 
--- 4. bulk update user center by query
+-- 5. bulk update user center by query
 
 
 
