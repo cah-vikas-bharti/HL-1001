@@ -16,6 +16,25 @@ SELECT r.rarID
 			JOIN outcomes.dbo.actionType at with(nolock) ON r.actionTypeID = at.actionTypeID
 			JOIN outcomes.dbo.resultType rst with(nolock) ON r.resultTypeID = rst.resultTypeID
 			JOIN outcomes.dbo.serviceType p with(nolock) ON 1 = 1
+			LEFT JOIN outcomes.dbo.PolicySetupQueueService qs with (nolock) ON r.RARID = qs.RARID
+																			AND qs.ServiceTypeID = p.serviceTypeID
+																			AND qs.PolicySetupQueueID = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.policySetupQueueID#" />
+			LEFT JOIN outcomes.dbo.PolicySetupQueueServiceRestriction TOR with (nolock) ON r.RARID = TOR.RARID
+																			AND TOR.ServiceTypeID = p.serviceTypeID
+																			AND TOR.RARRestrictionID = 1
+																			AND TOR.PolicySetupQueueID = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.policySetupQueueID#" />
+			LEFT JOIN outcomes.dbo.PolicySetupQueueServiceRestriction CFR with (nolock) ON r.RARID = CFR.RARID
+																			AND CFR.ServiceTypeID = p.serviceTypeID
+																			AND CFR.RARRestrictionID = 2
+																			AND CFR.PolicySetupQueueID = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.policySetupQueueID#" />
+			LEFT JOIN outcomes.dbo.PolicySetupQueueServiceRestriction MRFR with (nolock) ON r.RARID = MRFR.RARID
+																			AND CFR.ServiceTypeID = p.serviceTypeID
+																			AND CFR.RARRestrictionID = 3
+																			AND CFR.PolicySetupQueueID = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.policySetupQueueID#" />
+			WHERE 1 = 1
+			AND p.serviceTypeID <> 0
+			AND r.active = 1
+			ORDER BY p.serviceTypeID, rt.reasonTypeID
 			
 			
 
