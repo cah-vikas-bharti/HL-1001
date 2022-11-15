@@ -66,3 +66,6 @@ insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,ap
 insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494682,192719,'2022-11-14', 1,'2022-11-14',1,1);
 
 
+
+
+https://aocwxapatt01.fusehealth.io/attunityreplicate
