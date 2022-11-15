@@ -66,3 +66,7 @@ update auth.dbo.users WITH (ROWLOCK) set completedTraining=1 where username like
 select * from outcomes.dbo.contact where userID = '149474';
 
 insert into outcomes.dbo.contact (userID,email,phone,firstNM,lastNM,dob,createDT,createBy) values (149491,'tst@bulktst1.com',001234239843,'BulkTestUser','Testing','1999-05-10','2022-10-27','');
+
+select * from outcomes.dbo.states where stateName like '%North%';
+
+select * from outcomes.dbo.states where stateName like '%North%';
