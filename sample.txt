@@ -1,3 +1,40 @@
+IF EXISTS (select * from outcomes.dbo.RAR r with(nolock) JOIN outcomes.dbo.reasonType rt with(nolock) ON r.reasonTypeID = rt.reasonTypeID JOIN outcomes.dbo.actionType at with(nolock) ON r.actionTypeID = at.actionTypeID JOIN outcomes.dbo.resultType rst with(nolock) ON r.resultTypeID = rst.resultTypeID where rt.reasonTypeDesc = 'Adherence - Needs check-in' and at.actionNM = 'Patient consultation' and rst.resultDesc = 'Adherence check-in completed') 
+	BEGIN 
+		IF EXISTS (select * from outcomes.dbo.RAR r with(nolock) JOIN outcomes.dbo.reasonType rt with(nolock) ON r.reasonTypeID = rt.reasonTypeID JOIN outcomes.dbo.actionType at with(nolock) ON r.actionTypeID = at.actionTypeID JOIN outcomes.dbo.resultType rst with(nolock) ON r.resultTypeID = rst.resultTypeID where rt.reasonTypeDesc = 'Adherence - Needs check-in' and at.actionNM = 'Patient consultation' and rst.resultDesc = 'Adherence check-in completed' and r.serviceFee=10) 
+			BEGIN 
+				IF EXISTS (select * from outcomes.dbo.RAR r with(nolock) JOIN outcomes.dbo.reasonType rt with(nolock) ON r.reasonTypeID = rt.reasonTypeID JOIN outcomes.dbo.actionType at with(nolock) ON r.actionTypeID = at.actionTypeID JOIN outcomes.dbo.resultType rst with(nolock) ON r.resultTypeID = rst.resultTypeID JOIN outcomes.dbo.RARLegacyDefault rld with (nolock) ON rld.RARID=r.RARID where rt.reasonTypeDesc = 'Adherence - Needs check-in' and at.actionNM = 'Patient consultation' and rst.resultDesc = 'Adherence check-in completed') 
+					BEGIN 
+					select cast('NO CHANGE' as text) as results; 
+					END 
+				ELSE 
+					BEGIN 
+					insert into outcomes.dbo.RARLegacyDefault with (ROWLOCK) (RARID,tipOnly,F2FOnly,MedRecOnly) select RARID,0,0,0 from outcomes.dbo.RAR r JOIN outcomes.dbo.reasonType rt with(nolock) ON r.reasonTypeID = rt.reasonTypeID JOIN outcomes.dbo.actionType at with(nolock) ON r.actionTypeID = at.actionTypeID JOIN outcomes.dbo.resultType rst with(nolock) ON r.resultTypeID = rst.resultTypeID where rt.reasonTypeDesc = 'Adherence - Needs check-in' and at.actionNM = 'Patient consultation' and rst.resultDesc = 'Adherence check-in completed' select cast('NEW RAR' as text) as results; 
+					END 
+			END 
+		ELSE 
+			BEGIN 
+				select cast('UPDATE FEE' as text) as results; 
+				update outcomes.dbo.RAR with (ROWLOCK) set outcomes.dbo.RAR.serviceFee=10 from outcomes.dbo.RAR r JOIN outcomes.dbo.reasonType rt with(nolock) ON r.reasonTypeID = rt.reasonTypeID JOIN outcomes.dbo.actionType at with(nolock) ON r.actionTypeID = at.actionTypeID JOIN outcomes.dbo.resultType rst with(nolock) ON r.resultTypeID = rst.resultTypeID where rt.reasonTypeDesc = 'Adherence - Needs check-in' and at.actionNM = 'Patient consultation' and rst.resultDesc = 'Adherence check-in completed' 
+				IF EXISTS (select * from outcomes.dbo.RAR r with(nolock) JOIN outcomes.dbo.reasonType rt with(nolock) ON r.reasonTypeID = rt.reasonTypeID JOIN outcomes.dbo.actionType at with(nolock) ON r.actionTypeID = at.actionTypeID JOIN outcomes.dbo.resultType rst with(nolock) ON r.resultTypeID = rst.resultTypeID where rt.reasonTypeDesc = 'Adherence - Needs check-in' and at.actionNM = 'Patient consultation' and rst.resultDesc = 'Adherence check-in completed')  
+					BEGIN 
+						select cast('NO CHANGE' as text) as results; 
+					END 
+				ELSE 
+					BEGIN 
+						insert into outcomes.dbo.RARLegacyDefault with (ROWLOCK) (RARID,tipOnly,F2FOnly,MedRecOnly) select RARID,0,0,0 from outcomes.dbo.RAR r JOIN outcomes.dbo.reasonType rt with(nolock) ON r.reasonTypeID = rt.reasonTypeID JOIN outcomes.dbo.actionType at with(nolock) ON r.actionTypeID = at.actionTypeID JOIN outcomes.dbo.resultType rst with(nolock) ON r.resultTypeID = rst.resultTypeID where rt.reasonTypeDesc = 'Adherence - Needs check-in' and at.actionNM = 'Patient consultation' and rst.resultDesc = 'Adherence check-in completed' 
+						select cast('NEW RAR' as text) as results;  
+					END 
+			END 
+	END 
+ELSE 
+	BEGIN 
+		select cast('NO RAR' as text) as results; 
+	END 
+GO
+
+
+
+====================
 SELECT r.rarID
 				 , p.serviceType
 				 , p.serviceTypeID
