@@ -1,16 +1,13 @@
 -- 1. Get UserIds
-select userID from auth.dbo.users WITH (NOLOCK) where createDT='2022-11-14' and username like 'SIGNIFYHEALTHUSER%';
+select userID from auth.dbo.users WITH (NOLOCK) where createDT='2022-11-17' and username like 'SIGNIFYHEALTHUSER%';
 
 -- 2. complete training
-update auth.dbo.users WITH (ROWLOCK) set completedTraining=1, lastActivityDT='2022-11-14', lastLoginDT='2022-11-14' where createDT='2022-11-14' and username like 'SIGNIFYHEALTHUSER%';
+update auth.dbo.users WITH (ROWLOCK) set completedTraining=1, lastActivityDT='2022-11-17', lastLoginDT='2022-11-17' where createDT='2022-11-17' and username like 'SIGNIFYHEALTHUSER%';
 
 -- 3. Get CenterID
 select centerID from outcomes.dbo.pharmacy WITH (NOLOCK) where NCPDP_NABP='99B344'; 
 
--- 4. Update Emailid of existing users
-update outcomes.dbo.contact with (rowlock) set email='GMB-SignifyHealthUsers@getoutcomes.com' where userID in (select userID from auth.dbo.users with(nolock) where username like 'SIGNIFYHEALTHUSER%');
-
--- 5. bulk update user center by query
+-- 4. bulk update user center by query
 
 
 
