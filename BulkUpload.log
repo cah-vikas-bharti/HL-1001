@@ -11,58 +11,17 @@ select centerID from outcomes.dbo.pharmacy WITH (NOLOCK) where NCPDP_NABP='99B34
 
 
 
-------------------------------------------- 168 User Rec -----------------------------------------
-
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494634,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494635,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494636,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494637,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494638,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494639,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494640,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494641,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494642,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494643,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494644,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494645,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494646,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494647,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494648,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494649,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494650,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494651,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494652,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494653,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494654,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494655,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494656,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494657,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494658,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494659,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494660,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494661,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494662,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494663,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494665,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494666,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494667,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494668,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494669,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494670,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494671,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494672,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494673,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494674,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494675,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494676,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494677,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494678,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494679,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494680,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494681,192719,'2022-11-14', 1,'2022-11-14',1,1);
-insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (494682,192719,'2022-11-14', 1,'2022-11-14',1,1);
-
-
-
-
-https://aocwxapatt01.fusehealth.io/attunityreplicate
+------------------------------------------- 13 User Rec -----------------------------------------
+insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (495019,192719,'2022-11-17', 1,'2022-11-17',1,1);
+insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (495020,192719,'2022-11-17', 1,'2022-11-17',1,1);
+insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (495021,192719,'2022-11-17', 1,'2022-11-17',1,1);
+insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (495022,192719,'2022-11-17', 1,'2022-11-17',1,1);
+insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (495023,192719,'2022-11-17', 1,'2022-11-17',1,1);
+insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (495024,192719,'2022-11-17', 1,'2022-11-17',1,1);
+insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (495025,192719,'2022-11-17', 1,'2022-11-17',1,1);
+insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (495026,192719,'2022-11-17', 1,'2022-11-17',1,1);
+insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (495027,192719,'2022-11-17', 1,'2022-11-17',1,1);
+insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (495028,192719,'2022-11-17', 1,'2022-11-17',1,1);
+insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (495029,192719,'2022-11-17', 1,'2022-11-17',1,1);
+insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (495030,192719,'2022-11-17', 1,'2022-11-17',1,1);
+insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (495031,192719,'2022-11-17', 1,'2022-11-17',1,1);
