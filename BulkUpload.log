@@ -1,11 +1,11 @@
 -- 1. Get UserIds
-select userID from auth.dbo.users WITH (NOLOCK) where createDT='2022-11-17' and username like 'SIGNIFYHEALTHUSER%';
+select userID from auth.dbo.users WITH (NOLOCK) where createDT='2022-11-29' and username like 'SIGNIFYHEALTHUSER%';
 
 -- 2. complete training
-update auth.dbo.users WITH (ROWLOCK) set completedTraining=1, lastActivityDT='2022-11-17', lastLoginDT='2022-11-17' where createDT='2022-11-17' and username like 'SIGNIFYHEALTHUSER%';
+update auth.dbo.users WITH (ROWLOCK) set completedTraining=1, lastActivityDT='2022-11-29', lastLoginDT='2022-11-29' where createDT='2022-11-17' and username like 'SIGNIFYHEALTHUSER%';
 
 -- 3. Get CenterID
-select centerID from outcomes.dbo.pharmacy WITH (NOLOCK) where NCPDP_NABP='99B344'; 
+select centerID from outcomes.dbo.pharmacy WITH (NOLOCK) where NCPDP_NABP='99B359'; 
 
 -- 4. bulk update user center by query
 
