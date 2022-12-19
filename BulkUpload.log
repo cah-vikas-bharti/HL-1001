@@ -7,6 +7,15 @@ update auth.dbo.users WITH (ROWLOCK) set completedTraining=1, lastActivityDT='20
 -- 3. Get CenterID
 select centerID from outcomes.dbo.pharmacy WITH (NOLOCK) where NCPDP_NABP='99B359';
 
+------------------------------------------------------------------------------------
+-------------------------------Update Lastlogindate and  Last Activity date ---------
+
+update auth.dbo.users WITH (ROWLOCK) set lastActivityDT='2023-12-31', lastLoginDT='2023-12-31' where username like 'SIGNIFYHEALTHUSER%';
+
+select count(*) from auth.dbo.users with (NOLOCK) where username like 'SIGNIFYHEALTHUSER%';
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
 -- 4. bulk update user center by query
 
 
