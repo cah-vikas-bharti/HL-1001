@@ -1,8 +1,8 @@
 -- 1. Get UserIds
-select userID from auth.dbo.users WITH (NOLOCK) where createDT='2022-12-22' and username like 'SIGNIFYHEALTHUSER%';
+select userID from auth.dbo.users WITH (NOLOCK) where createDT='2022-12-27' and username like 'SIGNIFYHEALTHUSER%';
 
 -- 2. complete training
-update auth.dbo.users WITH (ROWLOCK) set completedTraining=1, lastActivityDT='2023-12-31', lastLoginDT='2023-12-31' where createDT='2022-12-22' and username like 'SIGNIFYHEALTHUSER%';
+update auth.dbo.users WITH (ROWLOCK) set completedTraining=1, lastActivityDT='2023-12-31', lastLoginDT='2023-12-31' where createDT='2022-12-27' and username like 'SIGNIFYHEALTHUSER%';
 
 -- 3. Get CenterID
 select centerID from outcomes.dbo.pharmacy WITH (NOLOCK) where NCPDP_NABP='99B360';
