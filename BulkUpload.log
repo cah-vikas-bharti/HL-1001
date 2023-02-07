@@ -37,3 +37,13 @@ insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,ap
 insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (498950,193003,'2023-01-03', 1,'2023-01-03',1,1);
 insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (498951,193003,'2023-01-03', 1,'2023-01-03',1,1);
 insert into outcomes.dbo.userCenter WITH (ROWLOCK) (userID,centerID,requestDT,approved,approvedDT,active,selected) values (498952,193003,'2023-01-03', 1,'2023-01-03',1,1);
+
+
+
+======================================
+
+select * from outcomes.dbo.contact with (NOLOCK) where userID in (select userID from auth.dbo.users where username like 'SIGNIFYHEALTHUSER%');
+
+update auth.dbo.users WITH (ROWLOCK) set lastActivityDT='2023-12-31', lastLoginDT='2023-12-31' where username like 'SIGNIFYHEALTHUSER%';
+
+update outcomes.dbo.contact with (ROWLOCK) set email= 'GMB-SignifyHealthUsers@getoutcomes.com' where userID in (select userID from auth.dbo.users where username like 'SIGNIFYHEALTHUSER%');
