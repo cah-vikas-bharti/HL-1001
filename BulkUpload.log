@@ -53,3 +53,6 @@ update outcomes.dbo.contact with (ROWLOCK) set email= 'GMB-SignifyHealthUsers@ge
 update outcomes.dbo.userCenter WITH (ROWLOCK) set centerID = (select centerID from outcomes.dbo.pharmacy WITH (NOLOCK) where NCPDP_NABP='19693344')  
 where centerID = (select centerID from outcomes.dbo.pharmacy WITH (NOLOCK) where NCPDP_NABP='1580859088') and userID = (select userID from
 auth.dbo.users where username = 'test.emily.test');
+
+
+update outcomes.dbo.contact with (rowlock) set employeeID = 987654 where userID = 262171;
