@@ -47,3 +47,9 @@ select * from outcomes.dbo.contact with (NOLOCK) where userID in (select userID 
 update auth.dbo.users WITH (ROWLOCK) set lastActivityDT='2023-12-31', lastLoginDT='2023-12-31' where username like 'SIGNIFYHEALTHUSER%';
 
 update outcomes.dbo.contact with (ROWLOCK) set email= 'GMB-SignifyHealthUsers@getoutcomes.com' where userID in (select userID from auth.dbo.users where username like 'SIGNIFYHEALTHUSER%');
+
+
+=========================
+update outcomes.dbo.userCenter WITH (ROWLOCK) set centerID = (select centerID from outcomes.dbo.pharmacy WITH (NOLOCK) where NCPDP_NABP='19693344')  
+where centerID = (select centerID from outcomes.dbo.pharmacy WITH (NOLOCK) where NCPDP_NABP='1580859088') and userID = (select userID from
+auth.dbo.users where username = 'test.emily.test');
