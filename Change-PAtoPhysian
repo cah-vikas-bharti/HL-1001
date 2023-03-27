@@ -1,0 +1,1 @@
+update outcomes.dbo.role WITH (ROWLOCK) set roleTypeID = 2 where userID = (select userID from auth.dbo.users where username = 'test2.emily.test3') and roleTypeID = 16;
