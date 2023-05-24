@@ -61,3 +61,12 @@ where centerID = (select centerID from outcomes.dbo.pharmacy WITH (NOLOCK) where
 auth.dbo.users where username = 'test.emily.test');
 
 delete from outcomes.dbo.userCenter with (rowlock) where
+
+
+===========================
+update auth.dbo.users WITH (ROWLOCK) set lastActivityDT='2023-12-31', lastLoginDT='2023-12-31' where username like 'SIGNIFYHEALTHUSER%';
+select * from auth.dbo.users where username like '%SIGNIFY%' and lastLoginDT is null order by createDT desc;
+
+select * from auth.dbo.users where username like '%SIGNIFY%'  order by username desc;
+
+select count(*) from auth.dbo.users where lastLoginDT is null and username like '%SIGNIFY%';
